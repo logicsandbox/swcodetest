@@ -3,13 +3,13 @@
 class order
 {
     private int $id;
-    private ?string $comment;
+    private ?string $comments;
     private ?DateTime $shipdate_expected;
 
-    public function __construct(int $id = 0, ?string $comment = null, $shipdate_expected = null)
+    public function __construct(int $id = 0, ?string $comments = null, $shipdate_expected = null)
     {
         $this->id = $id;
-        $this->comment = $comment;
+        $this->comments = $comments;
         $this->shipdate_expected = $shipdate_expected;
     }
 
@@ -24,9 +24,9 @@ class order
     /**
      * @return ?string
      */
-    public function getComment() : ?string
+    public function getComments() : ?string
     {
-        return $this->comment;
+        return $this->comments;
     }
 
     /**
@@ -38,11 +38,11 @@ class order
     }
 
     /**
-     * @param ?string $comment
+     * @param ?string $comments
      */
-    public function setComment(?string $comment)
+    public function setComments(?string $comments)
     {
-        $this->comment = $comment;
+        $this->comments = $comments;
     }
 
     /**
