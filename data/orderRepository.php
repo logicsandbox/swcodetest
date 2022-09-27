@@ -1,4 +1,5 @@
 <?php
+require_once("models/order.php");
 
 class orderRepository
 {
@@ -26,8 +27,25 @@ class orderRepository
 
     public function getAllOrders() : array
     {
-        //TODO: return all orders in table
-        throw new BadMethodCallException();
+        try
+        {
+            $orders = array();
+
+            $statement = $this->conn->prepare("SELECT * FROM sweetwater_test");
+            $statement->execute();
+
+            foreach($statement as $row)
+            {
+                $orders[$row["orderid"]] = new order($row["orderid"], $row["comments"], new DateTime($row["shipdate_expected"]));
+            }
+
+            return $orders;
+        }
+        catch (Exception $e)
+        {
+            print("Failed: " . $e->getMessage());
+            die();
+        }
     }
 
     public function searchOrdersByComment(string $commentSearchString) : array
