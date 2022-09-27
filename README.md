@@ -34,5 +34,5 @@ The shipdate_expected field is currently populated with no date (0000-00-00). So
 
 - __Commit often.__ We want to see your progress throughout the project.
 - __Work quickly.__ This project was designed to be completed quickly, so don't spend too much time on it.
-- __Write your own code.__ While we understand that there are pakages out there that take care of common problems, we ultimately want to see what _YOU_ can build, not what someone else has built.
+- __Write your own code.__ While we understand that there are packages out there that take care of common problems, we ultimately want to see what _YOU_ can build, not what someone else has built.
 - __Do your best work.__ We're using this project as a viewport into who you are as a developer. Show us what you can do!
