@@ -14,4 +14,9 @@ print($parser->generateOrderCommentReport());
 
 //Task 2
 
-$parser->parseExpectedShippingDates();
+$updatedOrders = $parser->parseExpectedShippingDates();
+
+foreach ($updatedOrders as $order)
+{
+    $repo->updateOrder($order);
+}
