@@ -9,4 +9,4 @@ $orders = $repo->getAllOrders();
 
 $generator = new reportGenerator($orders);
 
-$generator->generateReport();
+print($generator->generateReport());

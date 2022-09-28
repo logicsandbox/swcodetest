@@ -34,23 +34,52 @@ class reportGenerator
             new dictionaryItem(self::REFERRAL_REPORT_TITLE, self::REFERRAL_PATTERN),
             new dictionaryItem(self::SIGNATURE_REPORT_TITLE, self::SIGNATURE_PATTERN),
         );
+        $miscOrders = array();
 
         foreach ($this->orders as $order)
         {
             $comments = $order->getComments();
 
+            $matched = FALSE;
             foreach ($ordersDictionary as $dictionaryItem)
             {
                 //Don't break on match in case a comment fulfills multiple requirements
                 if (preg_match($dictionaryItem->pattern, $comments)){
                     $dictionaryItem->orderList[$order->getId()] = $order;
+                    $matched = TRUE;
                 }
+            }
+
+            if ($matched)
+            {
+                $miscOrders[$order->getId()] = $order;
             }
         }
 
-        print_r($ordersDictionary);
+        return $this->convertReportToHTML($ordersDictionary);
     }
 
+    /**
+     * @param dictionaryItem[] $ordersDictionary
+     * @return string
+     */
+    private function convertReportToHTML(array $ordersDictionary) : string
+    {
+        $html = "";
+        foreach ($ordersDictionary as $dictionaryItem)
+        {
+            $html .= "<h1>$dictionaryItem->reportTitle</h1><br>";
+            $html .= "<table border='1'><tr><th>Order Id</th><th>Comments</th></tr>";
+
+            foreach ($dictionaryItem->orderList as $order)
+            {
+                $html .= "<tr><td>".$order->getId()."</td><td>".$order->getComments()."</td></tr>";
+            }
+            $html .= "</table><br><br>";
+        }
+
+        return $html;
+    }
 }
 
 class dictionaryItem
