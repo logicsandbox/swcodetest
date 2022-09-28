@@ -49,7 +49,6 @@ class orderParser
                 {
                     $order->setShipdateExpected(new DateTime($matches[1]));
                     $parsedOrders[] = $order;
-                    print($order->getId()."<br>");
                 }
                 catch (Exception $e)
                 {
