@@ -48,9 +48,15 @@ class orderRepository
         }
     }
 
-    public function searchOrdersByComment(string $commentSearchString) : array
+    public function updateOrder(order $order) : void
     {
-        //TODO: return orders with comments matching search string
-        throw new BadMethodCallException();
+        $query = "UPDATE sweetwater_test SET comments = :comments, shipdate_expected = :shipdate WHERE orderid = :orderid";
+
+        $statement = $this->conn->prepare($query);
+        $statement->bindValue(":comments", $order->getComments());
+        $statement->bindValue(":shipdate", $order->getShipdateExpected());
+        $statement->bindValue(":orderid", $order->getId());
+
+        $statement->execute();
     }
 }
