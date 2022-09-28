@@ -36,7 +36,7 @@ class orderRepository
 
             foreach($statement as $row)
             {
-                $orders[$row["orderid"]] = new order($row["orderid"], $row["comments"], new DateTime($row["shipdate_expected"]));
+                $orders[] = new order($row["orderid"], $row["comments"], new DateTime($row["shipdate_expected"]));
             }
 
             return $orders;
