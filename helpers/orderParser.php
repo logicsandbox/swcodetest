@@ -15,7 +15,7 @@ class orderParser
     private const CANDY_PATTERN = "/\bcandy|candies\b/i";
     private const CALL_PATTERN = "/\bcalls?\b/i";
     private const REFERRAL_PATTERN = "/\brefer/i";
-    private const SIGNATURE_PATTERN = "/\bsign/i";
+    private const SIGNATURE_PATTERN = "/\bsign|^(?=.*?(?:\bif\b)).*(?:\bleave\b|\bplace\b)/i";
 
     private const EXPECTED_SHIPPING_PATTERN = "/Expected Ship Date: ([0-9]{2}\/[0-9]{2}\/[0-9]{2})/i";
 
