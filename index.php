@@ -20,3 +20,5 @@ foreach ($updatedOrders as $order)
 {
     $repo->updateOrder($order);
 }
+
+$repo->disconnect();

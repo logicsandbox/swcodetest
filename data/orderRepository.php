@@ -8,7 +8,7 @@ class orderRepository
     private const USERNAME = "root";
     private const PASSWORD = "password";
 
-    private PDO $conn;
+    private ?PDO $conn;
 
     public function __construct()
     {
@@ -58,5 +58,10 @@ class orderRepository
         $statement->bindValue(":orderid", $order->getId());
 
         $statement->execute();
+    }
+
+    public function disconnect() : void
+    {
+        $this->conn = null;
     }
 }
