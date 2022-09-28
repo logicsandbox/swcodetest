@@ -13,9 +13,13 @@ class orderParser
     private const MISC_REPORT_TITLE = "Miscellaneous";
 
     private const CANDY_PATTERN = "/\bcandy|candies\b/i";
-    private const CALL_PATTERN = "/\bcalls?\b/i";
+
+    //Top pattern fits the data better, but is ~4x slower to run than the bottom pattern, which is pretty close to accurate
+    private const CALL_PATTERN = "/^(?=.*?(?:\bme\b|\bplease\b|plz|\bpls|\bno\b|\bdo not\b|necessary\b|\bneeded\b)).*(?:don't)?(?:\bcalls?\b)/im";
+    //private const CALL_PATTERN = "/\bcalls?\b/i";
+
     private const REFERRAL_PATTERN = "/\brefer/i";
-    private const SIGNATURE_PATTERN = "/\bsign|^(?=.*?(?:\bif\b)).*(?:\bleave\b|\bplace\b)/i";
+    private const SIGNATURE_PATTERN = "/\bsign|^(?=.*?(?:\bif\b)).*(?:\bleave\b|\bplace\b)/im";
 
     private const EXPECTED_SHIPPING_PATTERN = "/Expected Ship Date: ([0-9]{2}\/[0-9]{2}\/[0-9]{2})/i";
 
