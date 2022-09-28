@@ -28,6 +28,9 @@ class orderParser
         $this->orders = $orders;
     }
 
+    /**
+     * @return string HTML report of grouped comments
+     */
     public function generateOrderCommentReport() : string
     {
         $ordersDictionary = $this->parseOrderComments();
@@ -35,8 +38,8 @@ class orderParser
         return $this->convertReportToHTML($ordersDictionary);
     }
 
-    /** @return order[] The orders with parsed expected shipping dates */
-    public function parseExpectedShippingDates() : array
+    /** @return order[] The orders with parsed and updated expected shipping dates */
+    public function parseAndUpdateExpectedShippingDates() : array
     {
         $parsedOrders = array();
 
@@ -80,14 +83,14 @@ class orderParser
             {
                 //Don't break on match in case a comment fulfills multiple requirements
                 if (preg_match($dictionaryItem->pattern, $comments)){
-                    $dictionaryItem->orderList[$order->getId()] = $order;
+                    $dictionaryItem->orderList[] = $order;
                     $matched = TRUE;
                 }
             }
 
             if (!$matched)
             {
-                $miscOrders[$order->getId()] = $order;
+                $miscOrders[] = $order;
             }
         }
 

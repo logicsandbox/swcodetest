@@ -10,6 +10,9 @@ class orderRepository
 
     private ?PDO $conn;
 
+    /**
+     * Automatically connects to the repository on instantiation
+     */
     public function __construct()
     {
         try
@@ -25,6 +28,9 @@ class orderRepository
         }
     }
 
+    /**
+     * @return order[] All orders in the repository
+     */
     public function getAllOrders() : array
     {
         try

@@ -13,8 +13,7 @@ $parser = new orderParser($orders);
 print($parser->generateOrderCommentReport());
 
 //Task 2
-
-$updatedOrders = $parser->parseExpectedShippingDates();
+$updatedOrders = $parser->parseAndUpdateExpectedShippingDates();
 
 foreach ($updatedOrders as $order)
 {
