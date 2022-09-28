@@ -26,7 +26,14 @@ class reportGenerator
         $this->orders = $orders;
     }
 
-    public function generateReport()
+    public function generateReport() : string
+    {
+        $ordersDictionary = $this->parseOrderComments();
+
+        return $this->convertReportToHTML($ordersDictionary);
+    }
+
+    private function parseOrderComments() : array
     {
         $ordersDictionary = array(
             new dictionaryItem(self::CANDY_REPORT_TITLE, self::CANDY_PATTERN),
@@ -58,7 +65,7 @@ class reportGenerator
 
         $ordersDictionary[] = new dictionaryItem(self::MISC_REPORT_TITLE, "", $miscOrders);
 
-        return $this->convertReportToHTML($ordersDictionary);
+        return $ordersDictionary;
     }
 
     /**
