@@ -54,7 +54,7 @@ class orderRepository
 
         $statement = $this->conn->prepare($query);
         $statement->bindValue(":comments", $order->getComments());
-        $statement->bindValue(":shipdate", $order->getShipdateExpected());
+        $statement->bindValue(":shipdate", $order->getShipdateExpected()->format("Y-m-d\TH:i:s"));
         $statement->bindValue(":orderid", $order->getId());
 
         $statement->execute();
