@@ -50,11 +50,13 @@ class reportGenerator
                 }
             }
 
-            if ($matched)
+            if (!$matched)
             {
                 $miscOrders[$order->getId()] = $order;
             }
         }
+
+        $ordersDictionary[] = new dictionaryItem(self::MISC_REPORT_TITLE, "", $miscOrders);
 
         return $this->convertReportToHTML($ordersDictionary);
     }
