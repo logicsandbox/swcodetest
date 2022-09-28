@@ -8,9 +8,10 @@ $repo = new orderRepository();
 $orders = $repo->getAllOrders();
 
 //Task 1
-$generator = new orderParser($orders);
+$parser = new orderParser($orders);
 
-print($generator->generateOrderCommentReport());
+print($parser->generateOrderCommentReport());
 
 //Task 2
 
+$parser->parseExpectedShippingDates();

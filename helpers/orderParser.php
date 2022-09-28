@@ -17,6 +17,8 @@ class orderParser
     private const REFERRAL_PATTERN = "/\brefer/i";
     private const SIGNATURE_PATTERN = "/\bsign/i";
 
+    private const EXPECTED_SHIPPING_PATTERN = "/Expected Ship Date: ([0-9]{2}\/[0-9]{2}\/[0-9]{2})/i";
+
     public function __construct(array $orders)
     {
         if (!isset($orders)) {
@@ -31,6 +33,33 @@ class orderParser
         $ordersDictionary = $this->parseOrderComments();
 
         return $this->convertReportToHTML($ordersDictionary);
+    }
+
+    /** @return order[] The orders with parsed expected shipping dates */
+    public function parseExpectedShippingDates() : array
+    {
+        $parsedOrders = array();
+
+        foreach ($this->orders as $order)
+        {
+            if (preg_match(self::EXPECTED_SHIPPING_PATTERN, $order->getComments(), $matches))
+            {
+
+                try
+                {
+                    $order->setShipdateExpected(new DateTime($matches[1]));
+                    $parsedOrders[] = $order;
+                    print($order->getId()."<br>");
+                }
+                catch (Exception $e)
+                {
+                    print($e->getMessage());
+                    //TODO: Log why it failed to set or parse
+                }
+            }
+        }
+
+        return $parsedOrders;
     }
 
     private function parseOrderComments() : array
