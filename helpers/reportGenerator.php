@@ -12,10 +12,10 @@ class reportGenerator
     private const SIGNATURE_REPORT_TITLE = "Signature Requests";
     private const MISC_REPORT_TITLE = "Miscellaneous";
 
-    private const CANDY_PATTERN = "/\bcandy|candies\b/";
-    private const CALL_PATTERN = "/\bcalls?\b/";
-    private const REFERRAL_PATTERN = "/\brefer/";
-    private const SIGNATURE_PATTERN = "/\bsign/";
+    private const CANDY_PATTERN = "/\bcandy|candies\b/i";
+    private const CALL_PATTERN = "/\bcalls?\b/i";
+    private const REFERRAL_PATTERN = "/\brefer/i";
+    private const SIGNATURE_PATTERN = "/\bsign/i";
 
     public function __construct(array $orders)
     {
