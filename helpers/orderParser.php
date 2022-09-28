@@ -1,7 +1,7 @@
 <?php
 require_once("models/order.php");
 
-class reportGenerator
+class orderParser
 {
     /** @var order[] */
     private array $orders;
@@ -26,7 +26,7 @@ class reportGenerator
         $this->orders = $orders;
     }
 
-    public function generateReport() : string
+    public function generateOrderCommentReport() : string
     {
         $ordersDictionary = $this->parseOrderComments();
 
